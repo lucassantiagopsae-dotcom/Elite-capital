@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://elite-capital-one.vercel.app"),
   title: "Elite Capital | Microcredito empresarial",
   description:
     "Credito para empresas com CNPJ ativo, ponto fisico e entrada de caixa recorrente.",
