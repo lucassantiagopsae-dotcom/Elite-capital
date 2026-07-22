@@ -1,3 +1,5 @@
+document.documentElement.classList.add("motion-ready");
+
 const form = document.querySelector("#lead-form");
 const cnpjRadios = document.querySelectorAll('input[name="cnpj-ativo"]');
 const pointRadios = document.querySelectorAll('input[name="ponto-fisico"]');
@@ -6,6 +8,33 @@ const cnpjInput = document.querySelector('input[name="cnpj"]');
 const statusLabels = document.querySelectorAll("[data-status-label]");
 const qualifiedResult = document.querySelector('[data-result="qualified"]');
 const notProfileResult = document.querySelector('[data-result="not-profile"]');
+const revealElements = document.querySelectorAll(".reveal");
+
+function setupRevealAnimations() {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    revealElements.forEach((element) => element.classList.add("is-visible"));
+    return;
+  }
+
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.18,
+      rootMargin: "0px 0px -8% 0px",
+    }
+  );
+
+  revealElements.forEach((element) => revealObserver.observe(element));
+}
 
 function selectedValue(name) {
   const checked = document.querySelector(`input[name="${name}"]:checked`);
@@ -73,3 +102,4 @@ form.addEventListener("submit", (event) => {
 });
 
 updateStatus();
+setupRevealAnimations();
