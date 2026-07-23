@@ -8,6 +8,13 @@
   --color-muted: #5f6b7a;
   --color-line: rgba(3, 29, 69, 0.14);
   --shadow-soft: 0 26px 80px rgba(0, 8, 21, 0.18);
+  --page-gutter: clamp(18px, 4vw, 56px);
+  --rail-bleed: 52px;
+  /* Placeholder: hoje reusa a arte do hero. Substituir por uma imagem
+     propria (pessoas/atendimento) quando o material chegar. */
+  --trust-texture: url("assets/brand/visuals/elite-hero-growth-bg.png");
+  --hero-inset: clamp(10px, 1.4vw, 20px);
+  --hero-radius: clamp(24px, 2.6vw, 40px);
 }
 
 * {
@@ -17,6 +24,12 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+/* Quando o motor de scroll suavizado assume, o comportamento nativo sai
+   de cena: os dois juntos deixariam a rolagem borrachuda. */
+html.has-smooth-scroll {
+  scroll-behavior: auto;
 }
 
 body {
@@ -49,9 +62,11 @@ main {
 
 .hero-section {
   position: relative;
-  min-height: 88svh;
-  max-width: 100vw;
-  padding: 20px clamp(18px, 4vw, 56px) 52px;
+  margin: var(--hero-inset);
+  min-height: calc(92svh - var(--hero-inset) * 2);
+  border-radius: var(--hero-radius);
+  overflow: hidden;
+  padding: 20px var(--page-gutter) 52px;
   color: var(--color-white);
   background:
     linear-gradient(90deg, rgba(0, 8, 21, 0.96), rgba(3, 29, 69, 0.88) 43%, rgba(3, 29, 69, 0.38)),
@@ -77,7 +92,6 @@ main {
 .site-header,
 .hero-grid,
 .qualification-section,
-.situations-section,
 .process-section,
 .trust-grid,
 .form-shell,
@@ -91,13 +105,13 @@ main {
 
 .site-header {
   display: grid;
-  grid-template-columns: 170px 1fr auto;
+  grid-template-columns: 128px 1fr auto;
   align-items: center;
   gap: 24px;
 }
 
 .brand-mark img {
-  width: 136px;
+  width: 100px;
 }
 
 .header-nav {
@@ -147,10 +161,11 @@ main {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(330px, 0.92fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: center;
   gap: clamp(28px, 5vw, 72px);
   padding-top: clamp(40px, 8vh, 86px);
+  padding-bottom: clamp(48px, 10vh, 120px);
 }
 
 .hero-grid > * {
@@ -239,134 +254,9 @@ main {
   background: rgba(255, 255, 255, 0.06);
 }
 
-.hero-instrument {
-  position: relative;
-  min-height: 470px;
-  padding: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 28px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.04)),
-    rgba(255, 255, 255, 0.04);
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(18px);
-}
-
-.instrument-topline {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  min-width: 0;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 13px;
-}
-
-.instrument-topline strong {
-  color: var(--color-cyan);
-  min-width: 0;
-  text-align: right;
-}
-
-.cash-arc {
-  position: absolute;
-  inset: 78px 22px auto;
-  height: 210px;
-  transform: skewY(-8deg);
-}
-
-.cash-arc span {
-  position: absolute;
-  bottom: 0;
-  width: 18%;
-  border-radius: 18px 18px 0 0;
-  background: linear-gradient(180deg, var(--color-cyan), rgba(5, 199, 245, 0.08));
-  box-shadow: 0 0 28px rgba(5, 199, 245, 0.25);
-}
-
-.cash-arc span:nth-child(1) {
-  left: 4%;
-  height: 36%;
-}
-
-.cash-arc span:nth-child(2) {
-  left: 29%;
-  height: 56%;
-}
-
-.cash-arc span:nth-child(3) {
-  left: 54%;
-  height: 78%;
-}
-
-.cash-arc span:nth-child(4) {
-  left: 78%;
-  height: 100%;
-}
-
-.instrument-window {
-  position: absolute;
-  right: 22px;
-  bottom: 96px;
-  left: 22px;
-  display: grid;
-  gap: 10px;
-}
-
-.window-row {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 12px;
-  min-height: 56px;
-  padding: 0 16px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 18px;
-  color: rgba(255, 255, 255, 0.82);
-  background: rgba(0, 8, 21, 0.38);
-}
-
-.window-row.active {
-  border-color: rgba(5, 199, 245, 0.55);
-}
-
-.window-row i {
-  color: var(--color-cyan);
-  font-style: normal;
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.window-row b {
-  color: var(--color-white);
-  font-size: 12px;
-  text-transform: uppercase;
-}
-
-.hero-stamp {
-  position: absolute;
-  right: 22px;
-  bottom: 22px;
-  left: 22px;
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 18px;
-  border-radius: 22px;
-  color: var(--color-deep);
-  background: var(--color-white);
-}
-
-.hero-stamp span {
-  color: var(--color-muted);
-}
-
-.hero-stamp strong {
-  min-width: 0;
-  text-align: right;
-}
-
 .qualification-section {
-  padding: clamp(72px, 10vw, 128px) 0;
+  max-width: calc(1180px + var(--page-gutter) * 2);
+  padding: clamp(72px, 10vw, 128px) var(--page-gutter);
 }
 
 .section-kicker {
@@ -383,7 +273,7 @@ main {
 }
 
 .qualification-copy h2,
-.situation-head h2,
+.stage-center h2,
 .process-copy h2,
 .trust-statement h2,
 .form-aside h2 {
@@ -396,7 +286,7 @@ main {
 }
 
 .qualification-copy p,
-.situation-head p,
+.stage-center p,
 .process-copy p,
 .form-aside p {
   color: var(--color-muted);
@@ -411,7 +301,14 @@ main {
   padding-top: 8px;
 }
 
+/* --gx/--gy/--gr sao escritos pelo JS (parallax do ponteiro no desktop,
+   deriva pelo scroll no toque). Ficam separados da inclinacao base --gtilt
+   para o efeito somar ao repouso em vez de substitui-lo. */
 .gate-item {
+  --gx: 0px;
+  --gy: 0px;
+  --gr: 0deg;
+  --gtilt: -1.6deg;
   display: grid;
   grid-template-columns: 82px 1fr;
   align-items: center;
@@ -420,12 +317,12 @@ main {
   border: 1px solid var(--color-line);
   border-radius: 26px;
   background: linear-gradient(90deg, var(--color-ice), var(--color-white));
-  transform: rotate(-1.6deg);
+  transform: translate3d(var(--gx), var(--gy), 0) rotate(calc(var(--gtilt) + var(--gr)));
 }
 
 .gate-item.offset {
+  --gtilt: 1.3deg;
   margin-left: clamp(0px, 5vw, 70px);
-  transform: rotate(1.3deg);
   background: var(--color-navy);
   color: var(--color-white);
 }
@@ -442,148 +339,177 @@ main {
   letter-spacing: 0;
 }
 
+/* Faixa cheia: fica fora do grupo de max-width 1180 justamente para o
+   azul sangrar de ponta a ponta. Quem se limita e o palco, la dentro. */
 .situations-section {
-  padding: clamp(76px, 11vw, 140px) clamp(18px, 4vw, 56px);
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: clamp(76px, 11vw, 140px) var(--page-gutter);
   background: var(--color-ice);
 }
 
-.situation-head {
-  width: min(1060px, 100%);
+/* ---------- Situacoes reais: palco de cards que convergem ----------
+   Os cards nascem espalhados e vao assentando na posicao final conforme
+   a secao se aproxima do centro da viewport. O deslocamento inicial de
+   cada um vem dos data-dx/dy/rot no HTML; o JS so interpola. */
+.situation-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(1160px, 100%);
+  min-height: 660px;
   margin: 0 auto;
 }
 
-.situation-head h2 {
-  max-width: 870px;
-  margin-top: 18px;
-}
 
-.situation-head p {
-  max-width: 650px;
-}
-
-.daily-map {
+/* O bloco central e os cards dividem a largura do palco: 440 no meio deixa
+   ~280px de cada lado, o suficiente para um card de 262 sem encostar. */
+.stage-center {
   position: relative;
-  width: min(1120px, 100%);
-  min-height: 610px;
-  margin: 42px auto 0;
-  border-radius: 42px;
-  overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(3, 29, 69, 0.08) 1px, transparent 1px),
-    linear-gradient(rgba(3, 29, 69, 0.08) 1px, transparent 1px),
-    var(--color-white);
-  background-size: 74px 74px;
-  border: 1px solid rgba(3, 29, 69, 0.12);
-}
-
-.map-core {
-  position: absolute;
-  left: 43%;
-  top: 50%;
-  display: grid;
-  place-items: center;
-  width: min(275px, 58vw);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  color: var(--color-white);
-  text-align: center;
-  background:
-    radial-gradient(circle at 30% 20%, rgba(5, 199, 245, 0.9), transparent 28%),
-    var(--color-navy);
-  transform: translate(-50%, -50%);
-  box-shadow: 0 30px 80px rgba(3, 29, 69, 0.28);
-  z-index: 1;
-}
-
-.map-core span {
-  color: var(--color-cyan);
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.map-core strong {
-  max-width: 210px;
-  font-size: 38px;
-  line-height: 0.96;
-  letter-spacing: 0;
-}
-
-.capital-visual {
-  position: absolute;
-  left: 57%;
-  top: 49%;
-  width: min(390px, 36vw);
-  transform: translate(-50%, -50%) rotate(2deg);
-  filter: drop-shadow(0 32px 46px rgba(3, 29, 69, 0.24));
   z-index: 2;
+  max-width: 440px;
+  text-align: center;
+}
+
+/* O titulo compartilha a escala das outras secoes, mas aqui a coluna tem
+   440px: no tamanho cheio ele quebrava em cinco linhas. */
+.stage-center h2 {
+  margin-top: 18px;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.02;
+}
+
+.stage-center p {
+  margin: 16px auto 0;
+  max-width: 420px;
+  font-size: 17px;
+}
+
+.stage-visual {
+  width: min(300px, 70%);
+  margin: 10px auto 0;
+  filter: drop-shadow(0 28px 44px rgba(3, 29, 69, 0.22));
   animation: capitalFloat 5.4s ease-in-out infinite;
 }
 
-.map-line {
-  --line-x: 0;
-  --line-y: 0;
+.situation-card {
   position: absolute;
+  z-index: 1;
   display: flex;
-  align-items: center;
-  gap: 12px;
-  max-width: 320px;
-  min-height: 64px;
-  padding: 12px 18px;
-  border: 1px solid rgba(3, 29, 69, 0.12);
-  border-radius: 999px;
-  color: var(--color-navy);
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 18px 50px rgba(3, 29, 69, 0.1);
-  font-weight: 750;
-  transform: translate(var(--line-x), var(--line-y));
-  z-index: 3;
+  align-items: flex-start;
+  gap: 13px;
+  width: 262px;
+  padding: 18px 20px;
+  border: 1px solid rgba(3, 29, 69, 0.08);
+  border-radius: 20px;
+  background: var(--color-white);
+  box-shadow: 0 22px 50px rgba(3, 29, 69, 0.12);
+  will-change: transform, opacity;
 }
 
-.map-line span {
+.sc-num {
   display: grid;
   place-items: center;
-  min-width: 36px;
-  height: 36px;
-  border-radius: 50%;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
   color: var(--color-deep);
   background: var(--color-cyan);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 950;
 }
 
-.line-1 {
-  left: 5%;
-  top: 14%;
+.sc-text strong {
+  display: block;
+  color: var(--color-navy);
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.3;
 }
 
-.line-2 {
-  right: 6%;
-  top: 12%;
+.sc-text span {
+  display: block;
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: 13px;
+  line-height: 1.35;
 }
 
-.line-3 {
-  left: 8%;
-  bottom: 16%;
+.sc-1 {
+  left: 0;
+  top: 58px;
 }
 
-.line-4 {
-  right: 10%;
-  bottom: 19%;
+.sc-2 {
+  left: 24px;
+  top: 300px;
 }
 
-.line-5 {
-  left: 50%;
-  bottom: 5%;
-  --line-x: -50%;
+.sc-3 {
+  left: 0;
+  top: 512px;
+}
+
+.sc-4 {
+  right: 0;
+  top: 92px;
+}
+
+.sc-5 {
+  right: 12px;
+  top: 420px;
+}
+
+/* Sem palco (mobile, movimento reduzido): vira lista. Cada card entra
+   inclinado e vindo de um lado alternado conforme aparece na tela — e a
+   traducao do movimento de convergencia do desktop para uma coluna. */
+.situation-stage.no-float {
+  display: block;
+  min-height: 0;
+}
+
+.situation-stage.no-float .stage-center {
+  max-width: 640px;
+  margin: 0 auto 34px;
+}
+
+.situation-stage.no-float .situation-card {
+  position: static;
+  width: 100%;
+  margin: 0 0 14px;
+  opacity: 0;
+  transform: translateX(var(--mx, 0)) rotate(var(--mr, 0deg));
+  transition:
+    opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.situation-stage.no-float .situation-card.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+.situation-stage.no-float .sc-1,
+.situation-stage.no-float .sc-3,
+.situation-stage.no-float .sc-5 {
+  --mx: -46px;
+  --mr: -6deg;
+}
+
+.situation-stage.no-float .sc-2,
+.situation-stage.no-float .sc-4 {
+  --mx: 46px;
+  --mr: 6deg;
 }
 
 .process-section {
   display: grid;
   grid-template-columns: 260px 1fr;
   gap: clamp(26px, 6vw, 84px);
-  padding: clamp(78px, 10vw, 134px) 0;
+  max-width: calc(1180px + var(--page-gutter) * 2);
+  padding: clamp(78px, 10vw, 134px) var(--page-gutter);
 }
 
 .process-label {
@@ -605,27 +531,55 @@ main {
   overflow: hidden;
   border-radius: 32px;
   border: 1px solid var(--color-line);
+  background: var(--color-white);
 }
 
 .process-rail article {
+  position: relative;
   min-height: 250px;
   padding: clamp(22px, 4vw, 42px);
   background: var(--color-white);
 }
 
+/* Cada card fica acima do proximo, para o seguinte sair de tras dele. */
+.process-rail article:nth-child(1) {
+  z-index: 3;
+}
+
 .process-rail article:nth-child(2) {
+  z-index: 2;
   color: var(--color-white);
   background: var(--color-navy);
+}
+
+.process-rail article:nth-child(3) {
+  z-index: 1;
+  background: linear-gradient(135deg, var(--color-cyan), #87e7ff);
+}
+
+/* Os tres cards recebem a mesma inclinacao, entao todas as divisorias
+   ficam paralelas. Sem isso o card 1, reto e opaco, cortava a diagonal
+   do 2 e a transicao parecia "deitada virando reta". */
+.process-rail article {
   transform: skewX(-4deg);
 }
 
-.process-rail article:nth-child(2) > * {
+.process-rail article > * {
   display: block;
   transform: skewX(4deg);
 }
 
+/* O primeiro e o ultimo sangram para fora: a diagonal das pontas e cortada
+   pelo overflow da regua. O padding compensa o sangramento para o texto nao
+   encostar na borda visivel. */
+.process-rail article:nth-child(1) {
+  margin-left: calc(var(--rail-bleed) * -1);
+  padding-left: calc(clamp(22px, 4vw, 42px) + var(--rail-bleed));
+}
+
 .process-rail article:nth-child(3) {
-  background: linear-gradient(135deg, var(--color-cyan), #87e7ff);
+  margin-right: calc(var(--rail-bleed) * -1);
+  padding-right: calc(clamp(22px, 4vw, 42px) + var(--rail-bleed));
 }
 
 .process-rail span {
@@ -644,15 +598,35 @@ main {
 }
 
 .trust-section {
+  position: relative;
+  isolation: isolate;
   padding: 64px clamp(18px, 4vw, 56px) clamp(76px, 10vw, 120px);
   color: var(--color-white);
   background: var(--color-deep);
 }
 
+/* Textura presa a viewport: a imagem nao acompanha o scroll, entao a
+   propria secao age como uma janela que desliza por cima dela.
+   Trocar a arte = trocar so a --trust-texture. */
+.trust-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.13;
+  /* Luminosity descarta a cor da arte e mantem so o relevo: a textura
+     para de "acender" e nao briga mais com o painel translucido. */
+  mix-blend-mode: luminosity;
+  background-image: var(--trust-texture);
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  mask-image: linear-gradient(to bottom, transparent, black 24%, black 76%, transparent);
+}
+
 .trust-marquee {
-  display: flex;
-  width: max-content;
-  gap: 24px;
+  overflow: hidden;
   margin-bottom: 64px;
   color: rgba(255, 255, 255, 0.11);
   font-size: clamp(56px, 11vw, 150px);
@@ -660,7 +634,23 @@ main {
   line-height: 0.9;
   letter-spacing: 0;
   text-transform: uppercase;
-  transform: translateX(-7vw);
+  mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: marqueeRun 32s linear infinite;
+}
+
+.marquee-group {
+  display: flex;
+  gap: 24px;
+}
+
+.trust-marquee:hover .marquee-track {
+  animation-play-state: paused;
 }
 
 .trust-grid {
@@ -689,7 +679,10 @@ main {
   padding: clamp(24px, 4vw, 44px);
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 32px;
-  background: rgba(255, 255, 255, 0.06);
+  /* Base escura propria + blur: o painel para de depender do fundo para
+     ter contraste, entao o texto segue legivel por cima da textura. */
+  background: rgba(0, 8, 21, 0.62);
+  backdrop-filter: blur(14px);
 }
 
 .trust-proof p {
@@ -747,71 +740,171 @@ main {
   background: var(--color-ice);
 }
 
+/* A coluna da esquerda e apoio, nao protagonista: quem precisa puxar a
+   atencao e a pergunta da etapa, do lado direito. Por isso logo, titulo e
+   painel de status entram em uma escala menor que a das outras secoes. */
 .form-aside img {
-  width: 180px;
+  width: 120px;
 }
 
 .form-aside h2 {
-  margin-top: 10px;
+  margin-top: 12px;
+  font-size: clamp(26px, 2.6vw, 34px);
+  line-height: 1.08;
+}
+
+.form-aside p {
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .decision-panel {
   display: grid;
-  gap: 8px;
-  padding: 22px;
-  border-radius: 24px;
-  color: var(--color-white);
-  background: var(--color-navy);
+  gap: 6px;
+  padding: 18px;
+  border: 1px solid rgba(3, 29, 69, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.7);
 }
 
-.decision-panel span,
+.decision-panel span {
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .decision-panel small {
-  color: rgba(255, 255, 255, 0.66);
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .decision-panel strong {
-  color: var(--color-cyan);
-  font-size: 24px;
-  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--color-navy);
+  font-size: 17px;
+  line-height: 1.2;
 }
 
+/* Ponto ciano no lugar do bloco escuro: sinaliza estado sem virar bloco. */
+.decision-panel strong::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-cyan);
+}
+
+/* ---------- Cadastro em etapas ----------
+   Uma pergunta por vez: o campo condicional de CNPJ vira uma etapa propria
+   em vez de aparecer no meio do formulario, entao o layout nunca salta. */
 .lead-form {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  display: flex;
+  flex-direction: column;
   padding: clamp(24px, 5vw, 58px);
   background: var(--color-white);
 }
 
-.lead-form label,
-.lead-form fieldset {
+.form-progress {
   display: grid;
   gap: 10px;
-  min-width: 0;
+  margin-bottom: clamp(24px, 4vw, 38px);
+}
+
+.progress-track {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(3, 29, 69, 0.1);
+  overflow: hidden;
+}
+
+.progress-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--color-cyan);
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progress-label {
   margin: 0;
-  border: 0;
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.progress-label b {
+  color: var(--color-navy);
+}
+
+/* As etapas ficam empilhadas na mesma celula do grid. A altura e definida
+   pelo JS com base na etapa ativa e transiciona, entao a caixa acompanha
+   cada pergunta em vez de ficar travada no tamanho da maior. */
+.form-steps {
+  display: grid;
+  align-items: start;
+  overflow: hidden;
+  transition: height 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.form-step {
+  grid-area: 1 / 1;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  margin: 0;
   padding: 0;
+  border: 0;
+  min-width: 0;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.form-step.is-active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.step-title {
+  margin: 0;
+  color: var(--color-navy);
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.step-hint {
+  margin: -4px 0 6px;
+  color: var(--color-muted);
+  font-size: 15px;
+}
+
+.lead-form label {
+  display: grid;
+  gap: 9px;
+  min-width: 0;
   color: var(--color-navy);
   font-size: 14px;
   font-weight: 800;
 }
 
-.lead-form fieldset {
-  align-content: start;
-  padding: 18px;
-  border: 1px solid var(--color-line);
-  border-radius: 18px;
-}
-
-.lead-form legend {
-  margin-bottom: 12px;
-  font-weight: 850;
-}
-
-.lead-form input,
-.lead-form select {
+.lead-form input {
   width: 100%;
-  min-height: 54px;
+  min-height: 56px;
   border: 1px solid rgba(3, 29, 69, 0.18);
   border-radius: 15px;
   padding: 0 16px;
@@ -820,31 +913,138 @@ main {
   outline: none;
 }
 
-.lead-form input:focus,
-.lead-form select:focus {
+.lead-form input:focus {
   border-color: var(--color-cyan);
   box-shadow: 0 0 0 4px rgba(5, 199, 245, 0.15);
 }
 
-.radio-line {
-  display: flex !important;
-  grid-template-columns: none !important;
-  align-items: center;
-  gap: 10px !important;
-  min-height: 34px;
-  font-weight: 700 !important;
+/* Opcoes como cartoes clicaveis: o radio nativo fica escondido, mas segue
+   sendo o que guarda o valor e o que o teclado navega. */
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.radio-line input {
-  width: 18px;
-  min-height: auto;
-  height: 18px;
-  accent-color: var(--color-cyan);
+.choice-grid-list {
+  grid-template-columns: 1fr;
+}
+
+.choice {
+  display: flex !important;
+  align-items: center;
+  gap: 14px;
+  min-height: 62px;
+  padding: 0 18px;
+  border: 1px solid rgba(3, 29, 69, 0.16);
+  border-radius: 16px;
+  background: var(--color-white);
+  font-size: 16px !important;
+  font-weight: 750 !important;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.choice:hover {
+  border-color: rgba(5, 199, 245, 0.6);
+  transform: translateY(-1px);
+}
+
+.choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choice-key {
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  color: var(--color-navy);
+  background: var(--color-ice);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.choice:has(input:checked) {
+  border-color: var(--color-cyan);
+  background: rgba(5, 199, 245, 0.08);
+}
+
+.choice:has(input:checked) .choice-key {
+  color: var(--color-deep);
+  background: var(--color-cyan);
+}
+
+.choice:has(input:focus-visible) {
+  box-shadow: 0 0 0 4px rgba(5, 199, 245, 0.15);
+}
+
+.step-error {
+  margin: 0;
+  min-height: 18px;
+  color: #d8365a;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+.form-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(22px, 4vw, 34px);
+}
+
+.step-back {
+  min-height: 52px;
+  padding: 0 20px;
+  border: 1px solid rgba(3, 29, 69, 0.18);
+  border-radius: 999px;
+  color: var(--color-navy);
+  background: var(--color-white);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.step-back[hidden] {
+  display: none;
+}
+
+.step-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex: 1;
+  min-height: 56px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--color-deep);
+  background: var(--color-cyan);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.step-next:hover,
+.submit-button:hover {
+  background: #04b4dd;
 }
 
 .submit-button {
-  grid-column: 1 / -1;
-  min-height: 58px;
+  flex: 1;
+  min-height: 56px;
   border: 0;
   color: var(--color-deep);
   background: var(--color-cyan);
@@ -852,7 +1052,7 @@ main {
 }
 
 .result-box {
-  grid-column: 1 / -1;
+  margin-top: 22px;
   padding: 22px;
   border-radius: 22px;
 }
@@ -871,8 +1071,40 @@ main {
   animation-delay: 0.12s;
 }
 
-.hero-instrument.hero-enter {
-  animation-delay: 0.28s;
+/* Confianca: o bloco de prova entra deslocado do titulo e a lista
+   aparece item a item, reforcando a leitura de cima para baixo. */
+.motion-ready .trust-proof.reveal {
+  transform: translateY(34px) scale(0.97);
+}
+
+.motion-ready .trust-proof.reveal.is-visible {
+  transform: translateY(0) scale(1);
+  transition-delay: 0.12s;
+}
+
+.motion-ready .trust-proof.reveal li {
+  opacity: 0;
+  transform: translateX(-14px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.motion-ready .trust-proof.reveal.is-visible li {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.motion-ready .trust-proof.reveal.is-visible li:nth-child(1) {
+  transition-delay: 0.4s;
+}
+
+.motion-ready .trust-proof.reveal.is-visible li:nth-child(2) {
+  transition-delay: 0.52s;
+}
+
+.motion-ready .trust-proof.reveal.is-visible li:nth-child(3) {
+  transition-delay: 0.64s;
 }
 
 .motion-ready .reveal {
@@ -897,14 +1129,16 @@ main {
   transform: translateY(42px) rotate(5deg);
 }
 
-.motion-ready .gate-item.reveal.is-visible.tilt-left {
-  opacity: 1;
-  transform: rotate(-1.6deg);
-}
-
+.motion-ready .gate-item.reveal.is-visible.tilt-left,
 .motion-ready .gate-item.offset.reveal.is-visible.tilt-right {
   opacity: 1;
-  transform: rotate(1.3deg);
+  transform: translate3d(var(--gx), var(--gy), 0) rotate(calc(var(--gtilt) + var(--gr)));
+}
+
+/* Depois da entrada o JS assume o transform e interpola quadro a quadro:
+   manter a transicao aqui deixaria o card arrastando atras do ponteiro. */
+.motion-ready .gate-item.is-live {
+  transition-property: opacity;
 }
 
 .motion-ready .gate-item:nth-child(2) {
@@ -915,61 +1149,81 @@ main {
   transition-delay: 0.24s;
 }
 
-.motion-ready .daily-map.reveal {
-  transform: translateY(28px) scale(0.98);
-}
-
-.motion-ready .daily-map.reveal.is-visible {
-  transform: translateY(0) scale(1);
-}
-
-.motion-ready .daily-map.reveal .map-line {
-  opacity: 0;
-  transform: translate(var(--line-x), 28px) scale(0.94);
-  transition:
-    opacity 0.72s ease,
-    transform 0.72s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.motion-ready .daily-map.reveal.is-visible .map-line {
+/* ---------- Como funciona: os cards saem de tras uns dos outros ----------
+   A regua e o gatilho (.reveal), mas nao se move: quem anima sao os cards.
+   1 aparece e "escreve" o texto -> 2 desliza de tras do 1 -> 3 de tras do 2. */
+.motion-ready .process-rail.reveal {
   opacity: 1;
-  transform: translate(var(--line-x), var(--line-y)) scale(1);
+  transform: none;
 }
 
-.motion-ready .daily-map.reveal.is-visible .line-2 {
-  transition-delay: 0.08s;
+.motion-ready .process-rail.reveal article:nth-child(2),
+.motion-ready .process-rail.reveal article:nth-child(3) {
+  transform: translateX(-100%) skewX(-4deg);
+  transition: transform 0.78s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.motion-ready .daily-map.reveal.is-visible .line-3 {
-  transition-delay: 0.16s;
+.motion-ready .process-rail.reveal.is-visible article:nth-child(2),
+.motion-ready .process-rail.reveal.is-visible article:nth-child(3) {
+  transform: translateX(0) skewX(-4deg);
 }
 
-.motion-ready .daily-map.reveal.is-visible .line-4 {
-  transition-delay: 0.24s;
+.motion-ready .process-rail.reveal.is-visible article:nth-child(2) {
+  transition-delay: 0.4s;
 }
 
-.motion-ready .daily-map.reveal.is-visible .line-5 {
-  transition-delay: 0.32s;
+.motion-ready .process-rail.reveal.is-visible article:nth-child(3) {
+  transition-delay: 0.85s;
 }
 
-.motion-ready .process-rail article:nth-child(2).reveal {
-  transform: translateY(34px) skewX(-4deg);
+/* Texto entra em cortina da esquerda para a direita: le como se estivesse
+   sendo escrito, sem precisar quebrar o texto em caracteres. */
+.motion-ready .process-rail.reveal span,
+.motion-ready .process-rail.reveal h3 {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.motion-ready .process-rail article:nth-child(2).reveal.is-visible {
-  transform: skewX(-4deg);
+.motion-ready .process-rail.reveal.is-visible span,
+.motion-ready .process-rail.reveal.is-visible h3 {
+  clip-path: inset(0 0 0 0);
 }
 
-.motion-ready .process-rail article:nth-child(2).reveal > * {
-  transform: skewX(4deg);
+.motion-ready .process-rail.reveal.is-visible article:nth-child(1) span {
+  transition-delay: 0.1s;
 }
 
-.motion-ready .process-rail article:nth-child(2) {
-  transition-delay: 0.12s;
+.motion-ready .process-rail.reveal.is-visible article:nth-child(1) h3 {
+  transition-delay: 0.26s;
 }
 
-.motion-ready .process-rail article:nth-child(3) {
-  transition-delay: 0.24s;
+.motion-ready .process-rail.reveal.is-visible article:nth-child(2) span {
+  transition-delay: 0.86s;
+}
+
+.motion-ready .process-rail.reveal.is-visible article:nth-child(2) h3 {
+  transition-delay: 1.02s;
+}
+
+.motion-ready .process-rail.reveal.is-visible article:nth-child(3) span {
+  transition-delay: 1.31s;
+}
+
+.motion-ready .process-rail.reveal.is-visible article:nth-child(3) h3 {
+  transition-delay: 1.47s;
+}
+
+/* O track tem 2 grupos identicos + o gap entre eles: deslocar metade da
+   largura mais meio gap deixa o segundo grupo exatamente onde o primeiro
+   comecou, entao o loop nao tem emenda visivel. */
+@keyframes marqueeRun {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 12px));
+  }
 }
 
 @keyframes heroFadeUp {
@@ -984,14 +1238,18 @@ main {
   }
 }
 
+/* A arte agora esta no fluxo normal, entao a flutuacao e so vertical.
+   O keyframe antigo carregava translate(-50%, -50%) do tempo em que ela
+   era posicionada em absoluto — e era isso que jogava a imagem por cima
+   do paragrafo. */
 @keyframes capitalFloat {
   0%,
   100% {
-    transform: translate(-50%, -50%) rotate(2deg);
+    transform: translateY(0) rotate(2deg);
   }
 
   50% {
-    transform: translate(-50%, -55%) rotate(-1deg);
+    transform: translateY(-14px) rotate(-1deg);
   }
 }
 
@@ -1019,28 +1277,176 @@ main {
 }
 
 .site-footer {
-  display: grid;
-  grid-template-columns: 180px 1fr auto;
-  align-items: center;
-  gap: 24px;
+  display: block;
   width: 100%;
   max-width: none;
-  padding: 34px max(18px, calc((100vw - 1180px) / 2));
-  color: rgba(255, 255, 255, 0.76);
+  padding: clamp(56px, 7vw, 84px) max(var(--page-gutter), calc((100vw - 1180px) / 2)) 34px;
+  color: rgba(255, 255, 255, 0.72);
   background: var(--color-deep);
 }
 
-.site-footer img {
-  width: 168px;
+.footer-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
 }
 
-.site-footer p {
+.footer-brand img {
+  width: 116px;
+  margin-bottom: 20px;
+}
+
+.footer-brand p {
+  max-width: 380px;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.footer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: var(--color-cyan);
+  font-weight: 850;
+}
+
+.footer-col h3 {
+  margin: 0 0 18px;
+  color: var(--color-white);
+  font-size: 13px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-col ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.footer-col a:hover {
+  color: var(--color-cyan);
+}
+
+.footer-legal {
+  max-width: 900px;
+  margin: clamp(44px, 6vw, 68px) 0 0;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 13px;
+}
+
+.footer-bottom p {
   margin: 0;
 }
 
-.site-footer a {
-  color: var(--color-cyan);
-  font-weight: 850;
+/* ---------- Cabecalho flutuante ----------
+   O header do topo pertence ao hero e rola junto com ele. Quando o hero
+   sai da tela, esta capsula desce e assume a navegacao. */
+.floating-header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: center;
+  padding: 14px var(--page-gutter);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-130%);
+  transition:
+    opacity 0.4s ease,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.floating-header.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.floating-header.is-visible .floating-header-inner {
+  pointer-events: auto;
+}
+
+/* Capsula clara: como ela vive sobre secoes brancas, o vidro escuro
+   virava uma barra cinza pesada. Em branco ela some no fundo e so o
+   CTA ciano continua chamando atencao. */
+.floating-header-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1180px;
+  /* Cantos suaves em vez de pilula, e o CTA ganha a mesma folga da borda
+     que ele tem em cima e embaixo. */
+  padding: 12px 20px 12px 26px;
+  border: 1px solid rgba(3, 29, 69, 0.08);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: 0 16px 44px rgba(3, 29, 69, 0.12);
+}
+
+.fh-brand img {
+  width: 92px;
+}
+
+.fh-nav {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fh-nav a {
+  padding: 9px 14px;
+  border-radius: 999px;
+  color: var(--color-muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.fh-nav a:hover {
+  color: var(--color-navy);
+  background: rgba(5, 199, 245, 0.12);
+}
+
+.fh-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  color: var(--color-deep);
+  background: var(--color-cyan);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.fh-cta:hover {
+  background: #04b4dd;
 }
 
 [hidden] {
@@ -1064,67 +1470,64 @@ main {
     grid-template-columns: 1fr;
   }
 
-  .hero-instrument {
-    min-height: 500px;
-  }
-
   .process-rail {
     grid-template-columns: 1fr;
   }
 
-  .process-rail article:nth-child(2) {
+  /* Empilhado: sem inclinacao e sem deslize lateral — os cards entram
+     de baixo, mantendo a mesma ordem de leitura da versao desktop. */
+  .process-rail article {
+    transform: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: clamp(22px, 4vw, 42px);
+    padding-right: clamp(22px, 4vw, 42px);
+  }
+
+  .process-rail article > * {
     transform: none;
   }
 
-  .process-rail article:nth-child(2) > * {
-    transform: none;
+  .motion-ready .process-rail.reveal article:nth-child(2),
+  .motion-ready .process-rail.reveal article:nth-child(3) {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .lead-form {
+  .motion-ready .process-rail.reveal.is-visible article:nth-child(2),
+  .motion-ready .process-rail.reveal.is-visible article:nth-child(3) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .choice-grid {
     grid-template-columns: 1fr;
   }
 
-  .daily-map {
-    min-height: auto;
-    padding: 28px;
+  .form-nav {
+    flex-wrap: wrap;
   }
 
-  .map-core,
-  .capital-visual,
-  .map-line {
-    position: static;
-    transform: none;
-  }
-
-  .map-core {
-    margin: 0 auto 20px;
-  }
-
-  .capital-visual {
-    width: min(360px, 92%);
-    margin: -12px auto 18px;
+  .stage-visual {
+    width: min(320px, 88%);
     animation: none;
   }
 
-  .map-line {
-    max-width: none;
-    margin-top: 12px;
+  .footer-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .motion-ready .daily-map.reveal .map-line,
-  .motion-ready .daily-map.reveal.is-visible .map-line {
-    transform: none;
-  }
-
-  .site-footer {
-    grid-template-columns: 1fr;
+  .footer-brand {
+    grid-column: 1 / -1;
   }
 }
 
 @media (max-width: 640px) {
   .hero-section {
-    width: 100%;
-    max-width: 100vw;
+    max-width: none;
     padding-top: 18px;
     padding-right: 20px;
     padding-left: 20px;
@@ -1140,7 +1543,7 @@ main {
   }
 
   .brand-mark img {
-    width: 122px;
+    width: 92px;
   }
 
   .header-cta {
@@ -1181,65 +1584,32 @@ main {
     width: 100%;
   }
 
-  .hero-instrument {
-    width: 100%;
-    max-width: 100%;
-    min-height: 430px;
-    margin-top: 28px;
-    padding-right: 14px;
-    padding-left: 14px;
-    border-radius: 24px;
-    overflow: hidden;
-  }
-
-  .instrument-topline,
-  .hero-stamp {
-    align-items: flex-start;
-  }
-
-  .instrument-topline strong,
-  .hero-stamp strong {
-    max-width: 150px;
-    white-space: normal;
-  }
-
-  .cash-arc {
-    right: 14px;
-    left: 14px;
-  }
-
-  .instrument-window {
-    right: 14px;
-    left: 14px;
-  }
-
-  .window-row {
-    grid-template-columns: auto 1fr;
-    gap: 8px;
-    padding: 0 12px;
-  }
-
-  .window-row b {
-    grid-column: 2;
-    font-size: 11px;
-  }
-
+  /* Empilhado no mobile: some a inclinacao de repouso, mas a deriva
+     lateral pelo scroll continua valendo. */
   .gate-item,
   .gate-item.offset {
+    --gtilt: 0deg;
     grid-template-columns: 1fr;
     margin-left: 0;
-    transform: none;
-  }
-
-  .motion-ready .gate-item.reveal.is-visible.tilt-left,
-  .motion-ready .gate-item.offset.reveal.is-visible.tilt-right,
-  .motion-ready .process-rail article:nth-child(2).reveal,
-  .motion-ready .process-rail article:nth-child(2).reveal.is-visible {
-    transform: none;
   }
 
   .trust-marquee {
     margin-bottom: 34px;
+  }
+
+  .fh-nav {
+    display: none;
+  }
+
+  .floating-header-inner {
+    grid-template-columns: 1fr auto;
+    padding-left: 16px;
+  }
+
+  /* iOS ignora background-attachment: fixed e o resultado fica travado.
+     No mobile a textura acompanha a secao normalmente. */
+  .trust-section::before {
+    background-attachment: scroll;
   }
 
   .form-shell {
@@ -1260,12 +1630,19 @@ main {
   .motion-ready .reveal,
   .motion-ready .reveal.is-visible,
   .motion-ready .gate-item.reveal,
-  .motion-ready .gate-item.offset.reveal,
-  .motion-ready .daily-map.reveal,
-  .motion-ready .daily-map.reveal.is-visible,
-  .motion-ready .process-rail article:nth-child(2).reveal,
-  .motion-ready .process-rail article:nth-child(2).reveal.is-visible {
+  .motion-ready .gate-item.offset.reveal {
     opacity: 1;
     transform: none;
+  }
+
+  /* Cards ficam nas posicoes finais, inclinacao preservada, sem deslize. */
+  .motion-ready .process-rail.reveal article:nth-child(2),
+  .motion-ready .process-rail.reveal article:nth-child(3) {
+    transform: skewX(-4deg);
+  }
+
+  .motion-ready .process-rail.reveal span,
+  .motion-ready .process-rail.reveal h3 {
+    clip-path: none;
   }
 }

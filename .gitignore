@@ -44,5 +44,6 @@ pnpm-debug.log*
 Thumbs.db
 .idea/
 .vscode/
+.claude/
 
 .vercel/

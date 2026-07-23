@@ -50,40 +50,6 @@
               <a class="secondary-button" href="#perfil">Ver se faz sentido <span aria-hidden="true">-></span></a>
             </div>
           </div>
-
-          <div class="hero-instrument hero-enter" aria-label="Resumo visual da analise">
-            <div class="instrument-topline">
-              <span>Fluxo de avaliacao</span>
-              <strong data-status-label>Aguardando respostas</strong>
-            </div>
-            <div class="cash-arc" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <div class="instrument-window">
-              <div class="window-row active">
-                <i aria-hidden="true">01</i>
-                <span>CNPJ ativo</span>
-                <b>obrigatorio</b>
-              </div>
-              <div class="window-row">
-                <i aria-hidden="true">02</i>
-                <span>Ponto fisico</span>
-                <b>visitavel</b>
-              </div>
-              <div class="window-row">
-                <i aria-hidden="true">03</i>
-                <span>Vendas recorrentes</span>
-                <b>caixa diario</b>
-              </div>
-            </div>
-            <div class="hero-stamp">
-              <span>Cadastro</span>
-              <strong>menos de 2 minutos</strong>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -115,30 +81,61 @@
       </section>
 
       <section class="situations-section">
-        <div class="situation-head reveal">
-          <span class="eyebrow dark">Situacoes reais</span>
-          <h2>Credito com parcelas diarias que cabem no seu bolso</h2>
-          <p>
-            Para resolver imprevistos, manter o seu negocio funcionando e aproveitar oportunidades sem desmontar o caixa
-            da semana.
-          </p>
-        </div>
-
-        <div class="daily-map reveal" aria-label="Situacoes de uso do credito">
-          <div class="map-core">
-            <span>Dia a dia</span>
-            <strong>capital de giro</strong>
+        <div class="situation-stage" data-floating>
+          <div class="stage-center reveal">
+            <span class="eyebrow dark">Situacoes reais</span>
+            <h2>Credito com parcelas diarias que cabem no seu bolso</h2>
+            <p>
+              Para resolver imprevistos, manter o seu negocio funcionando e aproveitar oportunidades sem desmontar o
+              caixa da semana.
+            </p>
+            <img
+              class="stage-visual"
+              src="assets/brand/visuals/working-capital-3d.png"
+              alt="Representacao 3D de capital de giro para comercio"
+              loading="lazy"
+            />
           </div>
-          <img
-            class="capital-visual"
-            src="assets/brand/visuals/working-capital-3d.png"
-            alt="Representacao 3D de capital de giro para comercio"
-          />
-          <div class="map-line line-1"><span>01</span>Pagar fornecedor e manter a loja girando</div>
-          <div class="map-line line-2"><span>02</span>Resolver um imprevisto no caixa</div>
-          <div class="map-line line-3"><span>03</span>Consertar equipamento importante</div>
-          <div class="map-line line-4"><span>04</span>Aproveitar uma oportunidade de compra</div>
-          <div class="map-line line-5"><span>05</span>Reforcar o capital de giro</div>
+
+          <article class="situation-card sc-1" data-dx="-170" data-dy="-80" data-rot="-8">
+            <span class="sc-num">01</span>
+            <div class="sc-text">
+              <strong>Pagar fornecedor e manter a loja girando</strong>
+              <span>Estoque reposto no prazo</span>
+            </div>
+          </article>
+
+          <article class="situation-card sc-2" data-dx="-200" data-dy="20" data-rot="-5">
+            <span class="sc-num">02</span>
+            <div class="sc-text">
+              <strong>Resolver um imprevisto no caixa</strong>
+              <span>Sem travar a operacao</span>
+            </div>
+          </article>
+
+          <article class="situation-card sc-3" data-dx="-150" data-dy="110" data-rot="7">
+            <span class="sc-num">03</span>
+            <div class="sc-text">
+              <strong>Consertar equipamento importante</strong>
+              <span>Volta a funcionar rapido</span>
+            </div>
+          </article>
+
+          <article class="situation-card sc-4" data-dx="190" data-dy="-70" data-rot="8">
+            <span class="sc-num">04</span>
+            <div class="sc-text">
+              <strong>Aproveitar uma oportunidade de compra</strong>
+              <span>Compra melhor, margem maior</span>
+            </div>
+          </article>
+
+          <article class="situation-card sc-5" data-dx="170" data-dy="90" data-rot="-6">
+            <span class="sc-num">05</span>
+            <div class="sc-text">
+              <strong>Reforcar o capital de giro</strong>
+              <span>Folego para a semana inteira</span>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -151,16 +148,16 @@
             boa opcao neste momento.
           </p>
         </div>
-        <div class="process-rail">
-          <article class="reveal">
+        <div class="process-rail reveal">
+          <article>
             <span>1</span>
             <h3>Voce responde algumas perguntas sobre a empresa</h3>
           </article>
-          <article class="reveal">
+          <article>
             <span>2</span>
             <h3>Nossa equipe avalia se o perfil esta dentro dos criterios</h3>
           </article>
-          <article class="reveal">
+          <article>
             <span>3</span>
             <h3>Se fizer sentido, entramos em contato para seguir a analise</h3>
           </article>
@@ -169,11 +166,22 @@
 
       <section class="trust-section">
         <div class="trust-marquee" aria-hidden="true">
-          <span>criterio</span>
-          <span>agilidade</span>
-          <span>analise</span>
-          <span>CNPJ</span>
-          <span>caixa diario</span>
+          <div class="marquee-track">
+            <div class="marquee-group">
+              <span>criterio</span>
+              <span>agilidade</span>
+              <span>analise</span>
+              <span>CNPJ</span>
+              <span>caixa diario</span>
+            </div>
+            <div class="marquee-group">
+              <span>criterio</span>
+              <span>agilidade</span>
+              <span>analise</span>
+              <span>CNPJ</span>
+              <span>caixa diario</span>
+            </div>
+          </div>
         </div>
         <div class="trust-grid">
           <div class="trust-statement reveal">
@@ -210,75 +218,160 @@
             </div>
           </div>
 
-          <form class="lead-form" id="lead-form">
-            <label>
-              Nome
-              <input name="nome" placeholder="Digite seu nome" required />
-            </label>
+          <form class="lead-form" id="lead-form" novalidate>
+            <div class="form-progress">
+              <div class="progress-track" role="presentation">
+                <span class="progress-fill" data-progress-fill></span>
+              </div>
+              <p class="progress-label">
+                Etapa <b data-step-current>1</b> de <b data-step-total>6</b>
+              </p>
+            </div>
 
-            <label>
-              WhatsApp
-              <input name="whatsapp" inputmode="tel" placeholder="Digite seu WhatsApp com DDD" required />
-            </label>
+            <div class="form-steps" data-steps>
+              <div class="form-step is-active" data-step role="group" aria-labelledby="titulo-contato">
+                <h3 class="step-title" id="titulo-contato">Por onde falamos com voce?</h3>
+                <p class="step-hint">Usamos esses dados apenas para o retorno da analise.</p>
+                <label>
+                  Nome
+                  <input name="nome" placeholder="Digite seu nome" autocomplete="name" />
+                </label>
+                <label>
+                  WhatsApp
+                  <input name="whatsapp" inputmode="tel" placeholder="Digite seu WhatsApp com DDD" autocomplete="tel" />
+                </label>
+                <p class="step-error" data-step-error role="alert"></p>
+              </div>
 
-            <fieldset>
-              <legend>Sua empresa possui CNPJ ativo?</legend>
-              <label class="radio-line">
-                <input type="radio" name="cnpj-ativo" value="sim" required />
-                Sim
-              </label>
-              <label class="radio-line">
-                <input type="radio" name="cnpj-ativo" value="nao" />
-                Nao
-              </label>
-            </fieldset>
+              <div class="form-step" data-step data-autoadvance role="group" aria-labelledby="titulo-cnpj-ativo">
+                <h3 class="step-title" id="titulo-cnpj-ativo">Sua empresa possui CNPJ ativo?</h3>
+                <p class="step-hint">Filtro obrigatorio nesta etapa.</p>
+                <div class="choice-grid">
+                  <label class="choice">
+                    <input type="radio" name="cnpj-ativo" value="sim" />
+                    <span class="choice-key" aria-hidden="true">A</span>
+                    <span class="choice-text">Sim</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="cnpj-ativo" value="nao" />
+                    <span class="choice-key" aria-hidden="true">B</span>
+                    <span class="choice-text">Nao</span>
+                  </label>
+                </div>
+                <p class="step-error" data-step-error role="alert"></p>
+              </div>
 
-            <label class="cnpj-field" hidden>
-              CNPJ
-              <input name="cnpj" placeholder="Digite o CNPJ" />
-            </label>
+              <div class="form-step" data-step data-step-when="cnpj-ativo=sim" role="group" aria-labelledby="titulo-cnpj-numero">
+                <h3 class="step-title" id="titulo-cnpj-numero">Qual o CNPJ da empresa?</h3>
+                <p class="step-hint">Sem pontuacao ou com pontuacao, como preferir.</p>
+                <label>
+                  CNPJ
+                  <input name="cnpj" inputmode="numeric" placeholder="00.000.000/0000-00" />
+                </label>
+                <p class="step-error" data-step-error role="alert"></p>
+              </div>
 
-            <fieldset>
-              <legend>O negocio tem ponto fisico aberto ao publico?</legend>
-              <label class="radio-line">
-                <input type="radio" name="ponto-fisico" value="sim" required />
-                Sim
-              </label>
-              <label class="radio-line">
-                <input type="radio" name="ponto-fisico" value="nao" />
-                Nao
-              </label>
-            </fieldset>
+              <div class="form-step" data-step data-autoadvance role="group" aria-labelledby="titulo-ponto-fisico">
+                <h3 class="step-title" id="titulo-ponto-fisico">O negocio tem ponto fisico aberto ao publico?</h3>
+                <p class="step-hint">Precisa ser um local visitavel.</p>
+                <div class="choice-grid">
+                  <label class="choice">
+                    <input type="radio" name="ponto-fisico" value="sim" />
+                    <span class="choice-key" aria-hidden="true">A</span>
+                    <span class="choice-text">Sim</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="ponto-fisico" value="nao" />
+                    <span class="choice-key" aria-hidden="true">B</span>
+                    <span class="choice-text">Nao</span>
+                  </label>
+                </div>
+                <p class="step-error" data-step-error role="alert"></p>
+              </div>
 
-            <label>
-              Em que regiao a empresa esta localizada?
-              <input name="regiao" placeholder="Cidade e bairro" required />
-            </label>
+              <div class="form-step" data-step role="group" aria-labelledby="titulo-regiao">
+                <h3 class="step-title" id="titulo-regiao">Em que regiao a empresa esta?</h3>
+                <p class="step-hint">Cidade e bairro ja bastam.</p>
+                <label>
+                  Regiao
+                  <input name="regiao" placeholder="Cidade e bairro" />
+                </label>
+                <p class="step-error" data-step-error role="alert"></p>
+              </div>
 
-            <label>
-              Seu negocio tem vendas diarias ou recorrentes?
-              <select name="vendas" required>
-                <option value="" disabled selected>Selecione uma opcao</option>
-                <option>Sim, vendo todos os dias</option>
-                <option>Sim, vendo quase todos os dias</option>
-                <option>Tenho vendas recorrentes, mas nao diarias</option>
-                <option>Nao tenho vendas recorrentes</option>
-              </select>
-            </label>
+              <div class="form-step" data-step data-autoadvance role="group" aria-labelledby="titulo-vendas">
+                <h3 class="step-title" id="titulo-vendas">Seu negocio tem vendas diarias ou recorrentes?</h3>
+                <p class="step-hint">Escolha a opcao mais proxima da realidade.</p>
+                <div class="choice-grid choice-grid-list">
+                  <label class="choice">
+                    <input type="radio" name="vendas" value="Sim, vendo todos os dias" />
+                    <span class="choice-key" aria-hidden="true">A</span>
+                    <span class="choice-text">Sim, vendo todos os dias</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="vendas" value="Sim, vendo quase todos os dias" />
+                    <span class="choice-key" aria-hidden="true">B</span>
+                    <span class="choice-text">Sim, vendo quase todos os dias</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="vendas" value="Tenho vendas recorrentes, mas nao diarias" />
+                    <span class="choice-key" aria-hidden="true">C</span>
+                    <span class="choice-text">Tenho vendas recorrentes, mas nao diarias</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="vendas" value="Nao tenho vendas recorrentes" />
+                    <span class="choice-key" aria-hidden="true">D</span>
+                    <span class="choice-text">Nao tenho vendas recorrentes</span>
+                  </label>
+                </div>
+                <p class="step-error" data-step-error role="alert"></p>
+              </div>
 
-            <label>
-              Qual o faturamento mensal aproximado?
-              <select name="faturamento" required>
-                <option value="" disabled selected>Selecione uma faixa</option>
-                <option>Ate R$ 5 mil</option>
-                <option>De R$ 5 mil a R$ 10 mil</option>
-                <option>De R$ 10 mil a R$ 20 mil</option>
-                <option>De R$ 20 mil a R$ 50 mil</option>
-                <option>Acima de R$ 50 mil</option>
-              </select>
-            </label>
+              <div class="form-step" data-step data-autoadvance role="group" aria-labelledby="titulo-faturamento">
+                <h3 class="step-title" id="titulo-faturamento">Qual o faturamento mensal aproximado?</h3>
+                <p class="step-hint">Uma estimativa ja ajuda na analise.</p>
+                <div class="choice-grid choice-grid-list">
+                  <label class="choice">
+                    <input type="radio" name="faturamento" value="Ate R$ 5 mil" />
+                    <span class="choice-key" aria-hidden="true">A</span>
+                    <span class="choice-text">Ate R$ 5 mil</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="faturamento" value="De R$ 5 mil a R$ 10 mil" />
+                    <span class="choice-key" aria-hidden="true">B</span>
+                    <span class="choice-text">De R$ 5 mil a R$ 10 mil</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="faturamento" value="De R$ 10 mil a R$ 20 mil" />
+                    <span class="choice-key" aria-hidden="true">C</span>
+                    <span class="choice-text">De R$ 10 mil a R$ 20 mil</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="faturamento" value="De R$ 20 mil a R$ 50 mil" />
+                    <span class="choice-key" aria-hidden="true">D</span>
+                    <span class="choice-text">De R$ 20 mil a R$ 50 mil</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="faturamento" value="Acima de R$ 50 mil" />
+                    <span class="choice-key" aria-hidden="true">E</span>
+                    <span class="choice-text">Acima de R$ 50 mil</span>
+                  </label>
+                </div>
+                <p class="step-error" data-step-error role="alert"></p>
+              </div>
+            </div>
 
-            <button class="submit-button" type="submit">Enviar cadastro para analise <span aria-hidden="true">-></span></button>
+            <div class="form-nav" data-form-nav>
+              <button class="step-back" type="button" data-back>
+                <span aria-hidden="true">&lt;-</span> Voltar
+              </button>
+              <button class="step-next" type="button" data-next>
+                Continuar <span aria-hidden="true">-&gt;</span>
+              </button>
+              <button class="submit-button" type="submit" data-submit hidden>
+                Enviar cadastro para analise <span aria-hidden="true">-&gt;</span>
+              </button>
+            </div>
 
             <div class="result-box qualified" data-result="qualified" role="status" hidden>
               <h3>Tudo certo! Recebemos suas respostas.</h3>
@@ -289,7 +382,7 @@
               <h3>Agradecemos seu interesse!</h3>
               <p>Com base nas suas respostas, esta pode nao ser a melhor opcao para voce neste momento.</p>
               <a href="https://www.instagram.com/elitecapitalx/" target="_blank" rel="noreferrer">
-                Acompanhar no Instagram <span aria-hidden="true">-></span>
+                Acompanhar no Instagram <span aria-hidden="true">-&gt;</span>
               </a>
             </div>
           </form>
@@ -297,11 +390,78 @@
       </section>
 
       <footer class="site-footer">
-        <img src="assets/brand/logos/elite-capital-logo-white.png" alt="Elite Capital Solucoes Financeiras" />
-        <p>Microcredito empresarial com analise responsavel para negocios em atividade.</p>
-        <a href="#cadastro">Quero uma analise</a>
+        <div class="footer-top">
+          <div class="footer-brand">
+            <img src="assets/brand/logos/elite-capital-logo-white.png" alt="Elite Capital Solucoes Financeiras" />
+            <p>
+              Microcredito empresarial com analise responsavel para negocios em atividade. Credito com parcelas
+              diarias para comercios e servicos com CNPJ ativo, ponto fisico e entrada de caixa recorrente.
+            </p>
+            <a class="footer-cta" href="#cadastro">Quero uma analise <span aria-hidden="true">-&gt;</span></a>
+          </div>
+
+          <nav class="footer-col" aria-label="Navegacao do rodape">
+            <h3>Navegacao</h3>
+            <ul>
+              <li><a href="#topo">Inicio</a></li>
+              <li><a href="#perfil">Perfil atendido</a></li>
+              <li><a href="#como-funciona">Como funciona</a></li>
+              <li><a href="#cadastro">Cadastro</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer-col">
+            <h3>Criterios</h3>
+            <ul>
+              <li>CNPJ ativo</li>
+              <li>Ponto fisico aberto ao publico</li>
+              <li>Entrada de caixa recorrente</li>
+              <li>Cadastro sujeito a analise</li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h3>Contato</h3>
+            <ul>
+              <li>Atendimento pelo WhatsApp informado no cadastro</li>
+              <li>
+                <a href="https://www.instagram.com/elitecapitalx/" target="_blank" rel="noreferrer">
+                  Instagram @elitecapitalx
+                </a>
+              </li>
+              <li>Segunda a sexta, horario comercial</li>
+            </ul>
+          </div>
+        </div>
+
+        <p class="footer-legal">
+          A Elite Capital atua na concessao de microcredito empresarial. Todo cadastro passa por analise e o envio
+          do formulario nao garante aprovacao nem constitui proposta de credito. Valores, prazos e condicoes sao
+          definidos caso a caso apos a analise do perfil do negocio.
+        </p>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 Elite Capital Solucoes Financeiras. Todos os direitos reservados.</p>
+          <p>Cadastro sujeito a analise.</p>
+        </div>
       </footer>
     </main>
+
+    <!-- Fica fora do <main> porque ele tem overflow: hidden, que recortaria
+         um elemento fixo. Aparece so quando o hero sai da tela. -->
+    <div class="floating-header" data-floating-header>
+      <div class="floating-header-inner">
+        <a class="fh-brand" href="#topo" aria-label="Elite Capital">
+          <img src="assets/brand/logos/elite-capital-logo-color.png" alt="Elite Capital Solucoes Financeiras" />
+        </a>
+        <nav class="fh-nav" aria-label="Navegacao fixa">
+          <a href="#perfil">Perfil</a>
+          <a href="#como-funciona">Como funciona</a>
+          <a href="#cadastro">Cadastro</a>
+        </nav>
+        <a class="fh-cta" href="#cadastro">Analise <span aria-hidden="true">-&gt;</span></a>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
