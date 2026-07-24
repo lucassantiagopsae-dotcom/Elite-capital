@@ -411,7 +411,7 @@ function profileStatus() {
   }
 
   if (hasCnpj === "sim" && hasPoint === "sim") {
-    return "Segue para analise";
+    return "Segue para análise";
   }
 
   return "Aguardando respostas";
@@ -472,7 +472,7 @@ function validateStep(step) {
 
   if (radios.length > 0) {
     const answered = radios.some((radio) => radio.checked);
-    stepError(step, answered ? "" : "Escolha uma opcao para continuar.");
+    stepError(step, answered ? "" : "Escolha uma opção para continuar.");
     return answered;
   }
 
