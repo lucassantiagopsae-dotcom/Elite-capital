@@ -597,10 +597,9 @@ main {
 }
 
 /* ---------- Depoimentos ----------
-   Slots para fotos/prints reais de clientes. Enquanto nao chegam as
-   imagens, cada figure mostra um placeholder no cinza neutro da marca.
-   Para publicar um depoimento, troque o <div.testimonial-media> por
-   <img src="..." alt="..."> dentro do mesmo figure. */
+   Relatos e fotos reaproveitados do site institucional elitecapital.com.br.
+   Cada card e um <figure> com estrelas, citacao e assinatura com avatar
+   (assets/depoimentos/*.webp, servidos em 256px para uma caixa de 52px). */
 .testimonials-section {
   max-width: calc(1180px + var(--page-gutter) * 2);
   margin: 0 auto;
@@ -622,36 +621,166 @@ main {
   text-wrap: balance;
 }
 
-.testimonials-grid {
+/* --per-view define quantos cards cabem na faixa; o resto do carrossel
+   (largura do card, paginacao, dots) e derivado dele. */
+.testimonials-carousel {
+  --per-view: 3;
+  --card-gap: clamp(18px, 3vw, 28px);
+}
+
+.testimonials-track {
+  display: flex;
+  gap: var(--card-gap);
+  /* Padding so na vertical: qualquer recuo lateral desalinharia o snap do
+     primeiro card, que precisa parar exatamente em scrollLeft 0. */
+  padding: 6px 0 10px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.testimonials-track::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonials-track:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 4px;
+  border-radius: 26px;
+}
+
+.testimonials-track > .testimonial-card {
+  flex: 0 0 calc((100% - (var(--per-view) - 1) * var(--card-gap)) / var(--per-view));
+  scroll-snap-align: start;
+}
+
+.carousel-controls {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: clamp(20px, 3vw, 30px);
+}
+
+.testimonials-carousel.is-ready .carousel-controls {
+  display: flex;
+}
+
+.carousel-arrow {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(18px, 3vw, 28px);
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid var(--color-line);
+  border-radius: 50%;
+  background: var(--color-white);
+  color: var(--color-navy);
+  font-weight: 850;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.carousel-arrow:hover:not(:disabled) {
+  border-color: var(--color-cyan);
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.32;
+  cursor: default;
+}
+
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.carousel-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(3, 29, 69, 0.22);
+  cursor: pointer;
+  transition: width 0.24s ease, background 0.24s ease;
+}
+
+.carousel-dot.is-current {
+  width: 26px;
+  border-radius: 999px;
+  background: var(--color-cyan);
+}
+
+.testimonials-note {
+  max-width: 620px;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .testimonial-card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 18px;
   margin: 0;
   overflow: hidden;
+  padding: clamp(24px, 3vw, 32px);
   border: 1px solid var(--color-line);
   border-radius: 24px;
   background: var(--color-ice);
 }
 
-.testimonial-card img {
-  width: 100%;
-  height: 100%;
+.testimonial-stars {
+  color: var(--color-cyan);
+  font-size: 15px;
+  letter-spacing: 0.16em;
+}
+
+.testimonial-card blockquote {
+  margin: 0;
+  color: var(--color-navy);
+  font-size: clamp(16px, 1.5vw, 18px);
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.testimonial-card blockquote::before {
+  content: '\201C';
+  margin-right: 2px;
+  color: var(--color-cyan);
+}
+
+.testimonial-card blockquote::after {
+  content: '\201D';
+  color: var(--color-cyan);
+}
+
+.testimonial-card figcaption {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-line);
+}
+
+.testimonial-card figcaption img {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   object-fit: cover;
 }
 
-.testimonial-media {
-  display: grid;
-  place-items: center;
-  min-height: 340px;
-  color: var(--color-muted);
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: #d9d9d9;
+.testimonial-card figcaption strong {
+  color: var(--color-text);
+  font-size: 15px;
+  font-weight: 850;
 }
 
 .form-section {
@@ -1178,7 +1307,7 @@ main {
 
 .footer-top {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr));
   gap: clamp(28px, 5vw, 64px);
   align-items: start;
 }
@@ -1406,8 +1535,8 @@ main {
     animation: none;
   }
 
-  .testimonials-grid {
-    grid-template-columns: 1fr;
+  .testimonials-carousel {
+    --per-view: 2;
   }
 
   .footer-top {
@@ -1420,6 +1549,10 @@ main {
 }
 
 @media (max-width: 640px) {
+  .testimonials-carousel {
+    --per-view: 1;
+  }
+
   .hero-section {
     max-width: none;
     padding-top: 18px;

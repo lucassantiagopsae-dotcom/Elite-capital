@@ -107,6 +107,15 @@ function setupSmoothScroll() {
       return;
     }
 
+    // Gesto horizontal sobre o carrossel pertence a ele: sem esta saida o
+    // preventDefault abaixo engoliria o swipe lateral do trackpad.
+    const horizontalScroller =
+      event.target instanceof Element ? event.target.closest("[data-carousel-track]") : null;
+
+    if (horizontalScroller && Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+      return;
+    }
+
     event.preventDefault();
 
     // deltaMode 1 = linhas, 2 = paginas. Normaliza tudo para pixels.
@@ -397,6 +406,157 @@ function setupFloatingStage() {
   kick();
 }
 
+/* ============================================================
+   DEPOIMENTOS — carrossel
+   A faixa e um scroller nativo com scroll-snap: o arrasto no toque e o
+   swipe do trackpad continuam funcionando de graca. Setas e dots so
+   empurram esse mesmo scroller, e a pagina atual e sempre lida de volta
+   do scrollLeft — entao o controle nunca discorda do que esta na tela.
+   Quantos cards cabem por vez vem do CSS (--per-view), medido pela
+   largura real do card.
+   ============================================================ */
+function setupTestimonialsCarousel() {
+  const carousel = document.querySelector("[data-carousel]");
+
+  if (!carousel) {
+    return;
+  }
+
+  const track = carousel.querySelector("[data-carousel-track]");
+  const cards = Array.from(track.querySelectorAll(".testimonial-card"));
+  const prevButton = carousel.querySelector("[data-carousel-prev]");
+  const nextButton = carousel.querySelector("[data-carousel-next]");
+  const dotsWrapper = carousel.querySelector("[data-carousel-dots]");
+
+  if (cards.length < 2) {
+    return;
+  }
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let dots = [];
+  let pages = 1;
+  let scheduled = false;
+
+  // Passo de um card = distancia entre dois cards vizinhos, ja com o gap.
+  function cardStep() {
+    return Math.max(1, cards[1].offsetLeft - cards[0].offsetLeft);
+  }
+
+  function perView() {
+    const cardWidth = cards[0].getBoundingClientRect().width;
+
+    if (cardWidth < 1) {
+      return 1;
+    }
+
+    return Math.max(1, Math.round(track.clientWidth / cardWidth));
+  }
+
+  function pageStep() {
+    return cardStep() * perView();
+  }
+
+  function maxScroll() {
+    return Math.max(0, track.scrollWidth - track.clientWidth);
+  }
+
+  function currentPage() {
+    return Math.max(0, Math.min(pages - 1, Math.round(track.scrollLeft / pageStep())));
+  }
+
+  function goToPage(index, smooth = true) {
+    const target = Math.max(0, Math.min(maxScroll(), index * pageStep()));
+
+    track.scrollTo({
+      left: target,
+      behavior: smooth && !prefersReducedMotion ? "smooth" : "auto",
+    });
+  }
+
+  function render() {
+    const page = currentPage();
+
+    dots.forEach((dot, index) => {
+      const isCurrent = index === page;
+
+      dot.classList.toggle("is-current", isCurrent);
+      dot.setAttribute("aria-current", isCurrent ? "true" : "false");
+    });
+
+    // A ultima pagina costuma parar antes do multiplo exato (o scroller
+    // trava no fim), entao quem manda no estado das setas e o scrollLeft.
+    // A folga de 4px absorve o arredondamento do snap em telas com zoom
+    // ou densidade fracionaria.
+    prevButton.disabled = track.scrollLeft <= 4;
+    nextButton.disabled = track.scrollLeft >= maxScroll() - 4;
+  }
+
+  function buildDots() {
+    const total = Math.max(1, Math.ceil(cards.length / perView()));
+
+    if (total === pages && dots.length === total) {
+      return;
+    }
+
+    pages = total;
+    dotsWrapper.textContent = "";
+
+    dots = Array.from({ length: total }, (unused, index) => {
+      const dot = document.createElement("button");
+
+      dot.type = "button";
+      dot.className = "carousel-dot";
+      dot.setAttribute("aria-label", `Ver depoimentos ${index + 1} de ${total}`);
+      dot.addEventListener("click", () => goToPage(index));
+      dotsWrapper.append(dot);
+
+      return dot;
+    });
+  }
+
+  prevButton.addEventListener("click", () => goToPage(currentPage() - 1));
+  nextButton.addEventListener("click", () => goToPage(currentPage() + 1));
+
+  track.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") {
+      return;
+    }
+
+    event.preventDefault();
+    goToPage(currentPage() + (event.key === "ArrowRight" ? 1 : -1));
+  });
+
+  // O scroller dispara muitos eventos por gesto; um quadro basta.
+  track.addEventListener("scroll", () => {
+    if (scheduled) {
+      return;
+    }
+
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      render();
+    });
+  }, { passive: true });
+
+  window.addEventListener("resize", () => {
+    buildDots();
+    render();
+  });
+
+  // As fontes mudam a altura, nao a largura dos cards, mas o load e a
+  // garantia de que a medida da faixa saiu depois do layout final.
+  window.addEventListener("load", () => {
+    buildDots();
+    render();
+  });
+
+  carousel.classList.add("is-ready");
+  buildDots();
+  render();
+}
+
 function selectedValue(name) {
   const checked = document.querySelector(`input[name="${name}"]:checked`);
   return checked ? checked.value : "";
@@ -614,6 +774,7 @@ updateStatus();
 renderStep();
 setupRevealAnimations();
 setupFloatingStage();
+setupTestimonialsCarousel();
 setupFloatingHeader();
 setupGateParallax();
 setupSmoothScroll();
