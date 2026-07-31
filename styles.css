@@ -522,7 +522,7 @@ main {
   background: var(--color-cyan);
 }
 
-/* Instagram (fundo navy): o preenchimento fica ciano e o texto navy */
+/* Botao das caixas de resultado (navy): preenchimento ciano, texto escuro */
 .result-box a.btn-elite {
   --btn-ico: 30px;
   --btn-inset: 5px;
@@ -886,9 +886,8 @@ main {
 }
 
 /* ---------- Depoimentos ----------
-   Relatos e fotos reaproveitados do site institucional elitecapital.com.br.
-   Cada card e um <figure> com estrelas, citacao e assinatura com avatar
-   (assets/depoimentos/*.webp, servidos em 256px para uma caixa de 52px). */
+   Relatos reaproveitados do site institucional elitecapital.com.br. Cada
+   card e um <figure> com estrelas, citacao e o nome de quem assina. */
 .testimonials-section {
   max-width: calc(1180px + var(--page-gutter) * 2);
   margin: 0 auto;
@@ -1051,19 +1050,8 @@ main {
 }
 
 .testimonial-card figcaption {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   padding-top: 18px;
   border-top: 1px solid var(--color-line);
-}
-
-.testimonial-card figcaption img {
-  flex: none;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 .testimonial-card figcaption strong {
@@ -1576,12 +1564,34 @@ main {
   background: var(--color-ice);
 }
 
+.result-box .result-nudge {
+  margin-top: 14px;
+  font-weight: 850;
+}
+
 .result-box a {
   width: fit-content;
-  margin-top: 16px;
+  margin-top: 12px;
   padding: 12px 16px;
   color: var(--color-white);
   background: var(--color-navy);
+}
+
+/* Dentro da caixa navy o botao precisa inverter, senao some no fundo. */
+.result-box.qualified a {
+  color: var(--color-navy);
+  background: var(--color-cyan);
+}
+
+/* Com o botao ja ciano, o preenchimento do padrao Elite tem de ser o
+   escuro — senao ele expandiria ciano sobre ciano e nada apareceria. */
+.result-box.qualified a.btn-elite {
+  --btn-fill: var(--color-deep);
+  --btn-hover-text: var(--color-white);
+}
+
+.result-box.qualified a.btn-elite .btn-icon {
+  color: var(--color-cyan);
 }
 
 .site-footer {
