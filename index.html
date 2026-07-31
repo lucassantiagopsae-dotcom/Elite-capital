@@ -20,6 +20,25 @@
   <body>
     <main>
       <section class="hero-section" id="topo">
+        <div class="hero-fx" aria-hidden="true">
+          <span class="orb orb-1"></span>
+          <span class="orb orb-2"></span>
+          <span class="orb orb-3"></span>
+          <div class="particles">
+            <span style="--x: 8%; --s: 5px; --d: 15s; --delay: -2s"></span>
+            <span style="--x: 16%; --s: 3px; --d: 19s; --delay: -8s"></span>
+            <span style="--x: 24%; --s: 6px; --d: 13s; --delay: -5s"></span>
+            <span style="--x: 33%; --s: 4px; --d: 21s; --delay: -12s"></span>
+            <span style="--x: 41%; --s: 7px; --d: 17s; --delay: -1s"></span>
+            <span style="--x: 49%; --s: 3px; --d: 23s; --delay: -9s"></span>
+            <span style="--x: 57%; --s: 5px; --d: 14s; --delay: -6s"></span>
+            <span style="--x: 64%; --s: 4px; --d: 20s; --delay: -14s"></span>
+            <span style="--x: 72%; --s: 6px; --d: 16s; --delay: -3s"></span>
+            <span style="--x: 80%; --s: 3px; --d: 22s; --delay: -11s"></span>
+            <span style="--x: 88%; --s: 5px; --d: 18s; --delay: -7s"></span>
+            <span style="--x: 94%; --s: 4px; --d: 24s; --delay: -16s"></span>
+          </div>
+        </div>
         <div class="noise" aria-hidden="true"></div>
 
         <header class="site-header hero-enter">
@@ -31,23 +50,34 @@
             <a href="#como-funciona">Como funciona</a>
             <a href="#cadastro">Cadastro</a>
           </nav>
-          <a class="header-cta" href="#cadastro">Análise <span aria-hidden="true">-></span></a>
+          <a class="header-cta btn-elite" href="#cadastro">
+            <span class="btn-label">Análise</span>
+            <span class="btn-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </span>
+          </a>
         </header>
 
         <div class="hero-grid">
           <div class="hero-copy hero-enter">
-            <h1>Crédito para empresas que vendem todos os dias</h1>
+            <h1>Crédito para empresas <br class="lb" />que vendem todos os dias</h1>
             <p class="hero-subtitle">
-              Microcrédito empresarial com pagamento diário para comércios e serviços que precisam resolver uma
-              necessidade rápida sem parar a operação.
+              Microcrédito empresarial com pagamento diário<br class="lb" />
+              para comércios e serviços que precisam resolver<br class="lb" />
+              uma necessidade rápida sem parar a operação.
             </p>
+            <div class="hero-actions">
+              <a class="primary-button btn-elite" href="#cadastro">
+                <span class="btn-label">Quero uma análise</span>
+                <span class="btn-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </span>
+              </a>
+            </div>
             <p class="hero-support">
               Atendimento para negócios com CNPJ ativo, ponto físico aberto ao público e entrada de caixa recorrente.
               Cadastro sujeito à análise.
             </p>
-            <div class="hero-actions">
-              <a class="primary-button" href="#cadastro">Quero uma análise <span aria-hidden="true">-></span></a>
-            </div>
           </div>
         </div>
       </section>
@@ -322,11 +352,17 @@
               <button class="step-back" type="button" data-back>
                 <span aria-hidden="true">&lt;-</span> Voltar
               </button>
-              <button class="step-next" type="button" data-next>
-                Continuar <span aria-hidden="true">-&gt;</span>
+              <button class="step-next btn-elite" type="button" data-next>
+                <span class="btn-label">Continuar</span>
+                <span class="btn-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </span>
               </button>
-              <button class="submit-button" type="submit" data-submit hidden>
-                Enviar cadastro para análise <span aria-hidden="true">-&gt;</span>
+              <button class="submit-button btn-elite" type="submit" data-submit hidden>
+                <span class="btn-label">Enviar cadastro para análise</span>
+                <span class="btn-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </span>
               </button>
             </div>
 
@@ -338,8 +374,11 @@
             <div class="result-box not-profile" data-result="not-profile" role="status" hidden>
               <h3>Agradecemos seu interesse!</h3>
               <p>Com base nas suas respostas, esta pode não ser a melhor opção para você neste momento.</p>
-              <a href="https://www.instagram.com/elitecapitalx/" target="_blank" rel="noreferrer">
-                Acompanhar no Instagram <span aria-hidden="true">-&gt;</span>
+              <a class="btn-elite" href="https://www.instagram.com/elitecapitalx/" target="_blank" rel="noreferrer">
+                <span class="btn-label">Acompanhar no Instagram</span>
+                <span class="btn-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </span>
               </a>
             </div>
           </form>
@@ -452,7 +491,12 @@
               Microcrédito empresarial com análise responsável para negócios em atividade. Crédito com parcelas
               diárias para comércios e serviços com CNPJ ativo, ponto físico e entrada de caixa recorrente.
             </p>
-            <a class="footer-cta" href="#cadastro">Quero uma análise <span aria-hidden="true">-&gt;</span></a>
+            <a class="footer-cta btn-elite" href="#cadastro">
+              <span class="btn-label">Quero uma análise</span>
+              <span class="btn-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+              </span>
+            </a>
           </div>
 
           <nav class="footer-col" aria-label="Navegação do rodapé">
@@ -508,7 +552,12 @@
           <a href="#como-funciona">Como funciona</a>
           <a href="#cadastro">Cadastro</a>
         </nav>
-        <a class="fh-cta" href="#cadastro">Análise <span aria-hidden="true">-&gt;</span></a>
+        <a class="fh-cta btn-elite" href="#cadastro">
+          <span class="btn-label">Análise</span>
+          <span class="btn-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </span>
+        </a>
       </div>
     </div>
 
